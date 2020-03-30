@@ -2,12 +2,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { Options } from "graphql-yoga";
-import bearerToken from "express-bearer-token";
-import { verifyAzureToken } from "./security/azure-token-checker";
 import cors from "cors";
 import { server } from "./graphql/create-server";
 import helmet from "helmet";
-import { createLogger, writeLog } from "./helpers/logger";
+import path from "path";
 
 // HTTP security middleware
 server.express.use(helmet());
@@ -19,7 +17,7 @@ const whitelist = [
   /** Client URL on Production */ "https://DOMAIN_NAME_HERE",
 ];
 const corsOptions: cors.CorsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (origin === undefined) {
       callback(null, true);
     } else if (origin && whitelist.indexOf(origin) !== -1) {
@@ -37,7 +35,7 @@ server.express.use(cors(corsOptions));
 // server.express.use(bearerToken());
 // server.express.use(verifyAzureToken);
 
-const appVersion = require("../package.json").version;
+const appVersion = require(path.join(process.cwd(), "package.json")).version;
 
 const options: Options = {
   port: 4000,
@@ -45,10 +43,9 @@ const options: Options = {
   playground: "/" /** to disable put false */,
   getEndpoint: false,
 };
-server.start(options, async options => {
+server.start(options, async (options) => {
   try {
-    createLogger();
-    writeLog(`server v${appVersion} started with config: `, options);
+    console.log(`server v${appVersion} started with config: `, options);
   } catch (error) {
     console.error(error);
   }

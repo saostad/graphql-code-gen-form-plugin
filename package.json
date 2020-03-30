@@ -8,7 +8,7 @@
     "gen-types": "graphql-code-generator --watch --config codegen.yml",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
-    "prod": "node dist/app.js",
+    "prod": "node dist/src/app.js",
     "nodemon": "nodemon --watch dist --exec \"npm run prod\"",
     "nodemon:docker": "nodemon -L --watch dist --exec \"npm run prod\"",
     "start": "npm-run-all -p gen-types nodemon tsc:watch"
