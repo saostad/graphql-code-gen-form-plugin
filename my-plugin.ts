@@ -7,8 +7,10 @@ export const plugin: PluginFunction<RawClientSideBasePluginConfig> = (
   documents: Types.DocumentFile[],
   config: RawClientSideBasePluginConfig,
 ) => {
-  documents.forEach((el) =>
-    console.log(`File: my-plugin.ts,`, `Line: 10 => `, el),
-  );
-  return "const a = 12";
+  console.log(`File: my-plugin.ts,`, `Line: 10 => `);
+
+  return `
+  const a = 12;
+  const b = 15;
+  `;
 };

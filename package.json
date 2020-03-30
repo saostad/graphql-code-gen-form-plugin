@@ -5,13 +5,15 @@
   "repository": {},
   "main": "index.js",
   "scripts": {
-    "gen-types": "graphql-code-generator --watch --config codegen.yml",
+    "gen-types": "graphql-code-generator --config codegen.yml",
+    "gen-types:watch": "graphql-code-generator --watch --config codegen.yml",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
     "prod": "node dist/src/app.js",
     "nodemon": "nodemon --watch dist --exec \"npm run prod\"",
     "nodemon:docker": "nodemon -L --watch dist --exec \"npm run prod\"",
-    "start": "npm-run-all -p gen-types nodemon tsc:watch"
+    "plugin:watch": "nodemon --watch dist/my-plugin.js --exec \"npm run gen-types\"",
+    "start": "npm-run-all -p gen-types:watch nodemon tsc:watch"
   },
   "keywords": [
     "graphql",

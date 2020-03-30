@@ -18,6 +18,7 @@ export type Scalars = {
 
 
 export enum GenderEnum {
+  Bi = 'bi',
   Female = 'female',
   Male = 'male'
 }
