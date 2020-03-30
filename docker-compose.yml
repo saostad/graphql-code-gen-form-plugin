@@ -1,0 +1,33 @@
+version: "3.1"
+
+services:
+  my-grapgql-server:
+    container_name: my_graphql_server
+    image: node:12.13.0
+    user: "node"
+    restart: unless-stopped
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: development
+      VIRTUAL_HOST: DOMAIN_NAME_HERE
+      CERT_NAME: kusa-all-domains
+    volumes:
+      - ./:/home/node/app
+
+    # uncomment this part if you wanna run it behind a reverse proxy like nginx
+    # expose:
+    #   - "4000"
+    #
+    # use this part if it runs directly without reverse proxy
+    ports:
+      - "4000:4000"
+    #
+    command: "npm start"
+    # command: "npm run ts-node"
+    # command: "npm install"
+    #
+# uncomment below lines just in production
+# networks:
+#   default:
+#     external:
+#       name: nginx-proxy

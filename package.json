@@ -1,0 +1,70 @@
+{
+  "name": "company-graphql-api-server",
+  "version": "1.0.0",
+  "description": "boilerplate for graphql server",
+  "repository": {},
+  "main": "index.js",
+  "scripts": {
+    "gen-types": "graphql-code-generator --watch --config codegen.yml",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch",
+    "prod": "node dist/app.js",
+    "nodemon": "nodemon --watch dist --exec \"npm run prod\"",
+    "nodemon:docker": "nodemon -L --watch dist --exec \"npm run prod\"",
+    "start": "npm-run-all -p gen-types nodemon tsc:watch"
+  },
+  "keywords": [
+    "graphql",
+    "typescript",
+    "code-first",
+    "api",
+    "server"
+  ],
+  "author": "Saeid Ostad",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
+    "delay": "1000"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.13.1",
+    "@graphql-codegen/typescript": "^1.13.1",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/graphql-iso-date": "^3.3.3",
+    "@types/graphql-upload": "^8.0.3",
+    "@types/helmet": "0.0.45",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/node": "^13.9.5",
+    "@types/nodemailer": "^6.4.0",
+    "@types/rimraf": "^3.0.0",
+    "@types/ws": "^7.2.3",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "graphql-codegen": "^0.4.0",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cookie-parser": "^1.4.4",
+    "express-bearer-token": "^2.4.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-upload": "^10.0.0",
+    "graphql-yoga": "^1.18.3",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "nexus": "^0.12.0-rc.4",
+    "nodemailer": "^6.3.1",
+    "rimraf": "^3.0.0"
+  }
+}
