@@ -1,7 +1,10 @@
-# configratoin for graphql-codegen package to generate typescript definitions based on graphql schema
 schema: ./src/generated/schema.graphql
 generates:
   src/typings/generated-types.ts:
     - typescript
   output.ts:
-    - ./dist/my-plugin.js
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    plugins:
+      - ./dist/my-plugin.js
